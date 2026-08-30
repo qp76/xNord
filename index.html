@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#07090e">
+  <meta name="theme-color" content="#07090f">
   <meta name="color-scheme" content="dark">
   <meta name="description" content="Nord87q — personal profile and links.">
   <meta property="og:title" content="Nord87q — Profile">
@@ -18,36 +18,47 @@
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 </head>
 <body>
-  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
-
   <div class="video-stage" aria-hidden="true">
-    <div id="videoTrack"></div>
+    <div id="videoTrack" class="video-track"></div>
     <div class="video-overlay"></div>
     <div class="video-vignette"></div>
     <div class="noise"></div>
   </div>
 
   <div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
-    <div class="welcome-orb"></div>
+    <div class="welcome-blur"></div>
+    <div class="welcome-shade"></div>
+    <div class="welcome-orb orb-one"></div><div class="welcome-orb orb-two"></div>
     <div class="welcome-card">
       <div class="mini-status"><span></span><b>ONLINE</b><i></i><em id="welcomeLocation">ALGERIA</em></div>
+      <div class="welcome-avatar"><img id="welcomeAvatar" alt="" hidden><span id="welcomeInitial">N</span></div>
       <h1 id="welcomeTitle">Welcome to <strong>Nord87q</strong></h1>
-      <p>Enter the profile to start the background atmosphere and music controls.</p>
-      <button class="enter-btn" id="enterBtn">Enter <span><i class="fa-solid fa-arrow-right"></i></span></button>
-      <small>Sound starts only after your first interaction.</small>
+      <p id="welcomeDescription">Click enter to visit my profile.</p>
+      <button class="enter-btn" id="enterBtn" type="button">Enter <span><i class="fa-solid fa-arrow-right"></i></span></button>
+      <small>Click to continue · sound starts after entering</small>
     </div>
   </div>
 
   <header class="topbar">
     <div class="location-pill"><span class="live-dot"></span><strong id="locationText">Algeria</strong><i></i><span id="timezoneText">UTC+1</span></div>
-    <button class="round-btn" id="videoSoundBtn" type="button" aria-label="Toggle video sound" aria-pressed="false"><i class="fa-solid fa-volume-xmark"></i></button>
+    <div class="top-actions">
+      <button class="round-btn" id="videoSoundBtn" type="button" aria-label="Unmute video sound" aria-pressed="false"><i class="fa-solid fa-volume-xmark"></i></button>
+    </div>
   </header>
 
   <main class="page">
     <section class="profile-card">
-      <div class="eyebrow"><span></span><b id="eyebrowText">DIGITAL PROFILE</b></div>
-      <h2 id="profileName">Nord<span>87q</span></h2>
-      <p class="bio"><span id="bioLine1">Developer, creator & internet enjoyer.</span><br><span id="bioLine2">Welcome to my space.</span></p>
+      <div class="profile-head">
+        <div class="avatar-wrap">
+          <div class="avatar-ring"></div>
+          <div class="avatar" id="avatar"><span id="avatarInitial">N</span><img id="avatarImage" alt="" hidden></div>
+          <span class="online-badge" title="Online"></span>
+        </div>
+        <div class="eyebrow"><span></span><b id="eyebrowText">DIGITAL PROFILE</b></div>
+        <h2 id="profileName">Nord<span>87q</span></h2>
+        <div class="badges" id="badges"></div>
+        <p class="bio" id="bio"></p>
+      </div>
 
       <div class="clock-card">
         <div class="clock-copy"><small>LOCAL TIME · <span id="clockZone">ALGERIA</span></small><strong id="clock">--:--:--</strong></div>
@@ -55,19 +66,13 @@
       </div>
 
       <nav class="links" id="links" aria-label="Social links"></nav>
+
+      <div class="profile-hint"><i class="fa-solid fa-volume-low"></i><span>Tap the sound button to hear the background video</span></div>
     </section>
   </main>
 
-  <button class="music-player" id="musicBtn" type="button" aria-label="Toggle background music" aria-pressed="false">
-    <span class="equalizer" id="equalizer"><i></i><i></i><i></i><i></i></span>
-    <span class="music-label"><b id="musicLabel">Play music</b><small id="musicState">OFF</small></span>
-  </button>
-
-  <button class="feedback" id="feedbackBtn" type="button"><i class="fa-regular fa-comment-dots"></i><span id="feedbackText">Feedback</span></button>
-
   <footer><span>© <span id="year"></span> <b id="footerName">Nord87q</b></span><i></i><span id="footerText">Made in Algeria</span></footer>
 
-  <audio id="music" preload="none" loop></audio>
   <div class="cursor" id="cursor"></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

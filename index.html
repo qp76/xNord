@@ -1,86 +1,77 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#07080c">
-<meta name="description" content="Nord87q — developer, creator and internet enjoyer.">
-<meta property="og:title" content="Nord87q — Profile">
-<meta property="og:description" content="Developer, creator & internet enjoyer.">
-<meta property="og:type" content="website">
-<title>Nord87q — Profile</title>
-<link rel="icon" href="./favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="./style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07090e">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Nord87q — personal profile and links.">
+  <meta property="og:title" content="Nord87q — Profile">
+  <meta property="og:description" content="Developer, creator & internet enjoyer.">
+  <meta property="og:type" content="website">
+  <title>Nord87q — Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 </head>
 <body>
-<div class="noise"></div>
-<div class="boot" id="overlay">
-  <div class="boot-orb"></div>
-  <div class="boot-card">
-    <div class="mini-brand"><span></span>NORD87Q</div>
-    <h1>Welcome<span>.</span></h1>
-    <p>Personal links, music and a little digital atmosphere.</p>
-    <button class="enter" id="startBtn">Enter space <i class="fa-solid fa-arrow-right"></i></button>
-    <small>Click anywhere on the button to continue</small>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+
+  <div class="video-stage" aria-hidden="true">
+    <div id="videoTrack"></div>
+    <div class="video-overlay"></div>
+    <div class="video-vignette"></div>
+    <div class="noise"></div>
   </div>
-</div>
 
-<div class="scene" aria-hidden="true">
-  <video class="bg-video active" src="Snaptik_7288236448220777761_sedef-kilic.mp4" muted playsinline preload="metadata"></video>
-  <video class="bg-video" src="Snaptik.app_7288813616575352097.mp4" muted playsinline preload="metadata"></video>
-  <video class="bg-video" src="Snaptik.app_7291154890955443462.mp4" muted playsinline preload="metadata"></video>
-  <video class="bg-video" src="Snaptik_7289443155374542081_tiktok.mp4" muted playsinline preload="metadata"></video>
-  <div class="vignette"></div><div class="colorwash"></div>
-</div>
-
-<header class="topbar">
-  <div class="presence"><span></span><b>Algeria</b><em>UTC+1</em></div>
-  <button class="round-btn" id="muteBtn" aria-label="Toggle music"><i class="fa-solid fa-volume-xmark"></i></button>
-</header>
-
-<main class="page">
-  <section class="hero">
-    <div class="tag"><i></i> DIGITAL PROFILE</div>
-    <h1>Nord<span>87q</span></h1>
-    <p class="intro">Developer, creator &amp; internet enjoyer.<br>Welcome to my space.</p>
-
-    <div class="time-panel">
-      <div class="time-main"><label>LOCAL TIME · ALGERIA</label><strong id="clock">--:--:--</strong></div>
-      <div class="time-date" id="date">---</div>
+  <div class="welcome" id="welcome" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+    <div class="welcome-orb"></div>
+    <div class="welcome-card">
+      <div class="mini-status"><span></span><b>ONLINE</b><i></i><em id="welcomeLocation">ALGERIA</em></div>
+      <h1 id="welcomeTitle">Welcome to <strong>Nord87q</strong></h1>
+      <p>Enter the profile to start the background atmosphere and music controls.</p>
+      <button class="enter-btn" id="enterBtn">Enter <span><i class="fa-solid fa-arrow-right"></i></span></button>
+      <small>Sound starts only after your first interaction.</small>
     </div>
+  </div>
 
-    <nav class="links" aria-label="Social links">
-      <button class="link" data-link="https://open.spotify.com/user/chakibreggane?si=fZ5UIepVR4-ca5dIDuMn-g">
-        <span class="link-icon spotify"><i class="fa-brands fa-spotify"></i></span><span class="copy"><b>Spotify</b><small>What I'm listening to</small></span><i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
-      </button>
-      <button class="link" data-link="https://www.roblox.com/">
-        <span class="link-icon roblox"><i class="fa-solid fa-gamepad"></i></span><span class="copy"><b>Roblox</b><small>Games &amp; creations</small></span><i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
-      </button>
-      <button class="link" data-link="https://github.com/qp76">
-        <span class="link-icon github"><i class="fa-brands fa-github"></i></span><span class="copy"><b>GitHub</b><small>Projects &amp; code</small></span><i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
-      </button>
-      <button class="link" data-link="https://youtube.com/c/ThailandCodes">
-        <span class="link-icon youtube"><i class="fa-brands fa-youtube"></i></span><span class="copy"><b>YouTube</b><small>Videos &amp; content</small></span><i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
-      </button>
-      <button class="link" data-link="https://discord.com/users/258244908970672128">
-        <span class="link-icon discord"><i class="fa-brands fa-discord"></i></span><span class="copy"><b>Discord</b><small>Chat with me</small></span><i class="fa-solid fa-arrow-up-right-from-square arrow"></i>
-      </button>
-    </nav>
-  </section>
-</main>
+  <header class="topbar">
+    <div class="location-pill"><span class="live-dot"></span><strong id="locationText">Algeria</strong><i></i><span id="timezoneText">UTC+1</span></div>
+    <button class="round-btn" id="videoSoundBtn" type="button" aria-label="Toggle video sound" aria-pressed="false"><i class="fa-solid fa-volume-xmark"></i></button>
+  </header>
 
-<div class="bottom-ui">
-  <button class="music-pill" id="musicButton"><span class="eq"><i></i><i></i><i></i><i></i></span><span id="musicLabel">Play music</span></button>
-  <button class="feedback" data-link="https://yousif111.github.io/FeedBack/"><i class="fa-regular fa-comment-dots"></i> Feedback</button>
-</div>
-<footer><span>© <span id="year"></span> Nord87q</span><i></i><span>Made in Algeria</span></footer>
+  <main class="page">
+    <section class="profile-card">
+      <div class="eyebrow"><span></span><b id="eyebrowText">DIGITAL PROFILE</b></div>
+      <h2 id="profileName">Nord<span>87q</span></h2>
+      <p class="bio"><span id="bioLine1">Developer, creator & internet enjoyer.</span><br><span id="bioLine2">Welcome to my space.</span></p>
 
-<audio id="music" src="https://cdn.discordapp.com/attachments/1133001504614252664/1162213280937418844/x2mate.com_-_-_Mostafa_Elnesr_-_ANA_Z3LTK_Official_Audio_128_kbps.mp3?ex=653b1e77&is=6528a977&hm=c7171d8afd9fdac97c725a7d6544817fdbca305da3c9b63e0e64f40455c5cb1b&" preload="none" loop></audio>
-<div class="cursor" id="cursor"></div>
-<script src="./script.js"></script>
+      <div class="clock-card">
+        <div class="clock-copy"><small>LOCAL TIME · <span id="clockZone">ALGERIA</span></small><strong id="clock">--:--:--</strong></div>
+        <div class="clock-date" id="date">--</div>
+      </div>
+
+      <nav class="links" id="links" aria-label="Social links"></nav>
+    </section>
+  </main>
+
+  <button class="music-player" id="musicBtn" type="button" aria-label="Toggle background music" aria-pressed="false">
+    <span class="equalizer" id="equalizer"><i></i><i></i><i></i><i></i></span>
+    <span class="music-label"><b id="musicLabel">Play music</b><small id="musicState">OFF</small></span>
+  </button>
+
+  <button class="feedback" id="feedbackBtn" type="button"><i class="fa-regular fa-comment-dots"></i><span id="feedbackText">Feedback</span></button>
+
+  <footer><span>© <span id="year"></span> <b id="footerName">Nord87q</b></span><i></i><span id="footerText">Made in Algeria</span></footer>
+
+  <audio id="music" preload="none" loop></audio>
+  <div class="cursor" id="cursor"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="./config.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>

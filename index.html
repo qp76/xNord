@@ -42,6 +42,7 @@
   <header class="topbar">
     <div class="location-pill"><span class="live-dot"></span><strong id="locationText">Algeria</strong><i></i><span id="timezoneText">UTC+1</span></div>
     <div class="top-actions">
+      <button class="round-btn share-top" id="shareBtn" type="button" aria-label="Share this profile" title="Share profile"><i class="fa-solid fa-arrow-up-from-bracket"></i></button>
       <button class="round-btn" id="videoSoundBtn" type="button" aria-label="Unmute video sound" aria-pressed="false"><i class="fa-solid fa-volume-xmark"></i></button>
     </div>
   </header>
@@ -58,16 +59,29 @@
         <h2 id="profileName">Nord<span>87q</span></h2>
         <div class="badges" id="badges"></div>
         <p class="bio" id="bio"></p>
+        <div class="profile-actions">
+          <button class="action-btn action-primary" id="copyProfileBtn" type="button"><i class="fa-regular fa-copy" aria-hidden="true"></i><span>Copy profile link</span></button>
+          <button class="action-btn" id="shareProfileBtn" type="button"><i class="fa-solid fa-share-nodes" aria-hidden="true"></i><span>Share profile</span></button>
+        </div>
       </div>
 
-      <div class="clock-card">
-        <div class="clock-copy"><small>LOCAL TIME · <span id="clockZone">ALGERIA</span></small><strong id="clock">--:--:--</strong></div>
-        <div class="clock-date" id="date">--</div>
+      <div class="profile-widgets">
+        <div class="clock-card">
+          <span class="widget-icon"><i class="fa-regular fa-clock" aria-hidden="true"></i></span>
+          <div class="clock-copy"><small>LOCAL TIME · <span id="clockZone">ALGERIA</span></small><strong id="clock">--:--:--</strong></div>
+          <div class="clock-date" id="date">--</div>
+        </div>
+
+        <div class="visits-card" title="Stored only in this browser">
+          <span class="widget-icon"><i class="fa-solid fa-fingerprint" aria-hidden="true"></i></span>
+          <div><small>YOUR VISITS</small><strong id="visitCount">1</strong><span class="visit-caption">on this browser</span></div>
+        </div>
       </div>
 
+      <div class="section-heading"><span>FIND ME AROUND THE WEB</span><i></i><small id="linkCount">00 LINKS</small></div>
       <nav class="links" id="links" aria-label="Social links"></nav>
 
-      <div class="profile-hint"><i class="fa-solid fa-volume-low"></i><span>Tap the sound button to hear the background video</span></div>
+      <div class="profile-hint"><i class="fa-solid fa-volume-low"></i><span>Sound is off by default · toggle it anytime</span></div>
     </section>
   </main>
 

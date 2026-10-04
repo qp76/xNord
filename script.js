@@ -8,6 +8,9 @@
   const enterBtn = $("#enterBtn");
   const videoTrack = $("#videoTrack");
   const videoSoundBtn = $("#videoSoundBtn");
+  const shareBtn = $("#shareBtn");
+  const copyProfileBtn = $("#copyProfileBtn");
+  const shareProfileBtn = $("#shareProfileBtn");
   const toast = $("#toast");
 
   const profile = cfg.profile || {};
@@ -54,16 +57,33 @@
 
   const links = $("#links");
   (cfg.links || []).filter(item => item && item.enabled !== false && item.url).forEach(item => {
-    const button = document.createElement("button");
-    button.type = "button";
+    const href = safeExternalURL(item.url);
+    if (!href) return;
+    const button = document.createElement("a");
+    button.href = href;
+    button.target = "_blank";
+    button.rel = "noopener noreferrer";
     button.className = `link-card link-${escapeClass(item.id || "custom")}`;
     button.innerHTML = `
       <span class="brand"><i class="${escapeAttr(item.icon || "fa-solid fa-link")}" aria-hidden="true"></i></span>
       <span class="link-copy"><b>${escapeHTML(item.title || "Link")}</b><small>${escapeHTML(item.subtitle || "Open link")}</small></span>
       <i class="fa-solid fa-arrow-up-right-from-square link-arrow" aria-hidden="true"></i>`;
-    button.addEventListener("click", () => openExternal(item.url));
     links.appendChild(button);
   });
+  $("#linkCount").textContent = `${String(links.children.length).padStart(2, "0")} LINKS`;
+
+  // This counter is intentionally local to this browser; it is not analytics.
+  const visitCount = $("#visitCount");
+  try {
+    const visits = Math.max(0, Number(localStorage.getItem("nord87q-visits")) || 0) + 1;
+    localStorage.setItem("nord87q-visits", String(visits));
+    visitCount.textContent = new Intl.NumberFormat().format(visits);
+  } catch {
+    visitCount.textContent = "—";
+  }
+
+  copyProfileBtn.addEventListener("click", () => copyText(location.href));
+  [shareBtn, shareProfileBtn].forEach(button => button.addEventListener("click", shareProfile));
 
   // ---------- Background video engine ----------
   function buildVideos() {
@@ -219,15 +239,53 @@
       requestAnimationFrame(tick);
     };
     tick();
-    $$('button').forEach(el => {
+    $$('button, .link-card').forEach(el => {
       el.addEventListener("pointerenter", () => cursor.classList.add("hover"));
       el.addEventListener("pointerleave", () => cursor.classList.remove("hover"));
     });
   }
 
-  function openExternal(url) {
-    try { window.open(url, "_blank", "noopener,noreferrer"); }
-    catch { location.href = url; }
+  async function copyText(text) {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        const field = document.createElement("textarea");
+        field.value = text;
+        field.style.position = "fixed";
+        field.style.opacity = "0";
+        document.body.appendChild(field);
+        field.select();
+        const copied = document.execCommand("copy");
+        field.remove();
+        if (!copied) throw new Error("Copy was not available");
+      }
+      showToast("Profile link copied to clipboard.");
+    } catch {
+      showToast("Clipboard access is unavailable in this browser.");
+    }
+  }
+
+  async function shareProfile() {
+    const data = { title: document.title, text: profile.bio || "Visit my profile", url: location.href };
+    if (navigator.share) {
+      try {
+        await navigator.share(data);
+      } catch (error) {
+        if (error.name !== "AbortError") showToast("Could not open the share menu.");
+      }
+      return;
+    }
+    await copyText(location.href);
+  }
+
+  function safeExternalURL(value) {
+    try {
+      const url = new URL(value, location.href);
+      return ["https:", "http:"].includes(url.protocol) ? url.href : "";
+    } catch {
+      return "";
+    }
   }
 
   function setupAvatar(imageSelector, initialSelector, src, name) {
